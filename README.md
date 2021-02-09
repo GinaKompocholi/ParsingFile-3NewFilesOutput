@@ -2,8 +2,8 @@
 
 ### **Project Scope**
 
-Main parses an input file (eg "beeline_consent_query_stderr.txt") and distinguishes the 3 main categories of the file (Query Execution Summary, Task Execution Summary, Detailed Metrics per task).
-For each category, collects metrics and stores them in python Dictionaries preserving the values (eg 1200) and the names (eg REDUCE_INPUT_RECORDS), which the saves in a new txt file.
+Main.py parses an input file (eg "beeline_consent_query_stderr.txt") and distinguishes the 3 main categories of the file (Query Execution Summary, Task Execution Summary, Detailed Metrics per task).
+For each category, collects metrics and stores them in python Dictionaries preserving the values (eg 1200) and the names (eg REDUCE_INPUT_RECORDS), which then saves in a new txt file.
 
 Build with Python 3.8.4 
 
@@ -11,14 +11,14 @@ Build with Python 3.8.4
 After cloning repo, project can be executed either by using default example input file or by providing a custom input file. 
 
 * #### Custom input file 
-To run the program with a custom file, add in Project root folder (Beeline folder) the input file you want to parse and after moving into this folder in your cmd,
+To run the program with a custom file, add in InputFile folder the input file you want to parse and after moving into this folder in your cmd,
 simply run bellow command:
 
     `python main.py name_of_your_custom_file.txt`
    
 * #### Default input file
 
-To run the program with the default file, simply get into the root folder of the Project (Beeline folder) , in your cmd and run bellow command:
+To run the program with the default input file, simply get into the root folder of the Project (Beeline folder) in your cmd and run bellow command:
 
     `python main.py`
 
