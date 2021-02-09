@@ -2,6 +2,8 @@ import sys
 import os
 from InitiationFiles.file_creator import Query_Execution_Summary, Task_Execution_Summary, Detailed_Metrics_per_task
 import logging
+import pdb
+from pathlib import Path
 
 def _check_retrieve_command_line_args():
 
@@ -71,18 +73,33 @@ def set_up_logger2():
 
 def set_up_logger():
 
+    logging.root.handlers = []
+    script_path = os.path.abspath(__file__)
+    script_dir = os.path.split(script_path)[0]  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline\InitiationFiles
+    parent_of_script_dir = Path(script_dir).parent  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline
+    folder_name = "Logs"
+    file_name = "logging_info.log"
+    file_path = os.path.join(parent_of_script_dir, folder_name, file_name)
+
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO, filename=file_path ,filemode='a')
+    logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.DEBUG, filename=file_path ,filemode='a')
+
+
     # Create a custom logger
     logger = logging.getLogger(__name__)
 
     # Create handlers
     c_handler = logging.StreamHandler()
-    f_handler = logging.FileHandler('file.log')
+    #pdb.set_trace()
+
+    f_handler = logging.FileHandler(file_path)
+
     c_handler.setLevel(logging.INFO)
-    f_handler.setLevel(logging.ERROR)
+    f_handler.setLevel(logging.INFO)
 
     # Create formatters and add it to handlers
     c_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
-    f_format = logging.Formatter('%(asctime)s -  %(levelname)s - %(name)s - %(message)s')
+    f_format = logging.Formatter('%(asctime)s -  %(levelname)s - %(message)s')
     c_handler.setFormatter(c_format)
     f_handler.setFormatter(f_format)
 
@@ -90,5 +107,5 @@ def set_up_logger():
     logger.addHandler(c_handler)
     logger.addHandler(f_handler)
 
-    logger.warning('This is a warning')
+    logger.info('This is a warning')
     logger.error('This is an error')
