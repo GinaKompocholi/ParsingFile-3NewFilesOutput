@@ -2,6 +2,7 @@ import json
 import os
 import pdb
 from pathlib import Path
+import logging
 
 category_seperator = 'INFO  : ----------------------------------------------------------------------------------------------'
 '''
@@ -53,7 +54,7 @@ class Query_Execution_Summary:
     def create_Query_Execution_Summary_text_file(self, input_file):
 
         file_path = self._get_file_location()
-        #creation of output file Task_Execution_Summary.txt
+        #creation of output file Query_Execution_Summary.txt
         with open(file_path, 'w') as QES_file:
             # move to next line since 'INFO  : OPERATION    DURATION' line won't be used for creation of dictionary
             line = self._read_next_line(input_file)
@@ -69,6 +70,7 @@ class Query_Execution_Summary:
                 line = self._read_next_line(input_file)
             self._write_dictionary_to_file(QES_file)
         QES_file.close()
+        logging.info("File Query_Execution_Summary.txt created successfully")
 
 class Task_Execution_Summary:
 
@@ -157,6 +159,7 @@ class Task_Execution_Summary:
                 line = self._read_next_line(input_file)
             self._write_dictionary_to_file(TES_file)
         TES_file.close()
+        logging.info("File Task_Execution_Summary.txt created successfully")
 
 
 class Detailed_Metrics_per_task:
@@ -223,3 +226,4 @@ class Detailed_Metrics_per_task:
                 json.dump(Detailed_Metrics_dictionary, Detailed_Metrics, indent=2)
                 key = self._get_dictionary_key(line)
         Detailed_Metrics.close()
+        logging.info("File Detailed_Metrics_per_task.txt created successfully")
