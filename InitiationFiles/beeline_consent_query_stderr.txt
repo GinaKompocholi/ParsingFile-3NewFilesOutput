@@ -86,7 +86,7 @@ INFO  : Prepare Plan                            8.69s
 INFO  : Get Query Coordinator (AM)              0.00s
 INFO  : Submit Plan                             0.48s
 INFO  : Start DAG                               1.45s
-INFO  : RGun DA                                80.54s
+INFO  : Run DAG                                80.54s
 INFO  : ----------------------------------------------------------------------------------------------
 INFO  : 
 INFO  : Task Execution Summary
@@ -300,7 +300,7 @@ INFO  :    INPUT_FILES_Map_4: 138
 INFO  :    RAW_INPUT_SPLITS_Map_1: 21388
 INFO  :    RAW_INPUT_SPLITS_Map_3: 480
 INFO  :    RAW_INPUT_SPLITS_Map_4: 138
-INFO  : Completed    command(queryId=hive_20200501144051_33d3f99c-b08a-45f2-a2af-4710568dacce); Time taken: 90.239 seconds
+INFO  : Completed executing command(queryId=hive_20200501144051_33d3f99c-b08a-45f2-a2af-4710568dacce); Time taken: 90.239 seconds
 INFO  : OK
 100 rows selected (98.773 seconds)
 0: jdbc:hive2://bispocm1.misc.t-mobile.pl:218> 

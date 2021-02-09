@@ -1,6 +1,7 @@
 import json
+import os
 import pdb
-from decimal import Decimal
+from pathlib import Path
 
 category_seperator = 'INFO  : ----------------------------------------------------------------------------------------------'
 '''
@@ -17,6 +18,15 @@ class Query_Execution_Summary:
         self.seperator_indicator = 0
         # Creation of dictionary that will be passed in the output file
         self.Query_Execution_Summary_dictionary = {}
+
+    def _get_file_location(self):
+        script_path = os.path.abspath(__file__)
+        script_dir = os.path.split(script_path)[0]  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline\InitiationFiles
+        parent_of_script_dir = Path(script_dir).parent  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline
+        folder_name = "OutputFiles"
+        file_name = "Query_Execution_Summary.txt"
+        file_path = os.path.join(parent_of_script_dir, folder_name, file_name)
+        return file_path
 
     def _read_next_line(self, input_file):
         line = input_file.readline()
@@ -41,7 +51,10 @@ class Query_Execution_Summary:
         json.dump(self.Query_Execution_Summary_dictionary, Query_Execution_Summary_file, indent=2)
 
     def create_Query_Execution_Summary_text_file(self, input_file):
-        with open('Query_Execution_Summary.txt', 'w') as QES_file:
+
+        file_path = self._get_file_location()
+        #creation of output file Task_Execution_Summary.txt
+        with open(file_path, 'w') as QES_file:
             # move to next line since 'INFO  : OPERATION    DURATION' line won't be used for creation of dictionary
             line = self._read_next_line(input_file)
 
@@ -63,6 +76,15 @@ class Task_Execution_Summary:
         self.seperator_indicator = 0
         # Creation of dictionary that will be passed in the output file
         self.Task_Execution_Summary_dictionary = {}
+
+    def _get_file_location(self):
+        script_path = os.path.abspath(__file__)
+        script_dir = os.path.split(script_path)[0]  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline\InitiationFiles
+        parent_of_script_dir = Path(script_dir).parent  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline
+        folder_name = "OutputFiles"
+        file_name = "Task_Execution_Summary.txt"
+        file_path = os.path.join(parent_of_script_dir, folder_name, file_name)
+        return file_path
 
     # example of nested dictionary keys -> ['DURATION(ms)', 'CPU_TIME(ms)', 'GC_TIME(ms)', 'INPUT_RECORDS', 'OUTPUT_RECORDS']
     def _get_nested_dictionary_keys(self,line):
@@ -112,8 +134,10 @@ class Task_Execution_Summary:
 
     def create_Task_Execution_Summary_text_file(self, line, input_file):
 
+
+        file_path = self._get_file_location()
         #creation of output file Task_Execution_Summary.txt
-        with open('Task_Execution_Summary.txt', 'w') as TES_file:
+        with open(file_path, 'w') as TES_file:
 
             nested_dictionary_keys = self._get_nested_dictionary_keys(line)
             line = self._read_next_line(input_file)
@@ -136,6 +160,15 @@ class Task_Execution_Summary:
 
 
 class Detailed_Metrics_per_task:
+
+    def _get_file_location(self):
+        script_path = os.path.abspath(__file__)
+        script_dir = os.path.split(script_path)[0]  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline\InitiationFiles
+        parent_of_script_dir = Path(script_dir).parent  # i.e. C:\Users\KompocholiG\PycharmProjects\Beeline
+        folder_name = "OutputFiles"
+        file_name = "Detailed_Metrics_per_task.txt"
+        file_path = os.path.join(parent_of_script_dir, folder_name, file_name)
+        return file_path
 
     def _read_next_line(self, input_file):
         line = input_file.readline()
@@ -170,8 +203,9 @@ class Detailed_Metrics_per_task:
 
     def create_Detailed_Metrics_per_task_text_file(self, line, input_file):
 
+        file_path = self._get_file_location()
         #creation of output file Detailed_Metrics_per_task.txt
-        with open('Detailed_Metrics_per_task.txt', 'w') as Detailed_Metrics:
+        with open(file_path, 'w') as Detailed_Metrics:
 
             key = self._get_dictionary_key(line)
             while 'Completed' not in key:
