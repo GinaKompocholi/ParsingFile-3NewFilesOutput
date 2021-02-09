@@ -1,3 +1,5 @@
 _pycache_
 .pytest_cache
 .idea/
+/Logs/
+/OutputFiles/

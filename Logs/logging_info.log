@@ -1,21 +1,6 @@
-2021-02-09 22:15:17,916 - root - File Query_Execution_Summary.txt created successfully
-2021-02-09 22:15:17,916 - root - File Task_Execution_Summary.txt created successfully
-2021-02-09 22:15:17,917 - root - File Detailed_Metrics_per_task.txt created successfully
-2021-02-09 22:15:29,708 - root - File Query_Execution_Summary.txt created successfully
-2021-02-09 22:15:29,709 - root - File Task_Execution_Summary.txt created successfully
-2021-02-09 22:15:29,710 - root - File Detailed_Metrics_per_task.txt created successfully
-2021-02-09 22:16:05,587 -  ERROR - This is an error
-2021-02-09 22:16:35,711 -  INFO - This is a warning
-2021-02-09 22:16:35,711 - InitiationFiles.setup - This is a warning
-2021-02-09 22:16:35,713 -  ERROR - This is an error
-2021-02-09 22:16:35,713 - InitiationFiles.setup - This is an error
-2021-02-09 22:16:35,714 - root - File Query_Execution_Summary.txt created successfully
-2021-02-09 22:16:35,716 - root - File Task_Execution_Summary.txt created successfully
-2021-02-09 22:16:35,717 - root - File Detailed_Metrics_per_task.txt created successfully
-2021-02-09 22:21:11,828 -  INFO - This is a warning
-2021-02-09 22:21:11,828 - InitiationFiles.setup - This is a warning
-2021-02-09 22:21:11,828 -  ERROR - This is an error
-2021-02-09 22:21:11,828 - InitiationFiles.setup - This is an error
-2021-02-09 22:21:11,828 - root - File Query_Execution_Summary.txt created successfully
-2021-02-09 22:21:11,828 - root - File Task_Execution_Summary.txt created successfully
-2021-02-09 22:21:11,830 - root - File Detailed_Metrics_per_task.txt created successfully
+23:51:41,893 INFO Setup of logs file and loggings on console completed succesfully
+23:51:41,894 INFO Arguments verification and filepath retrieval completed succesfully
+23:51:41,894 INFO File Query_Execution_Summary.txt created successfully
+23:51:41,895 INFO File Task_Execution_Summary.txt created successfully
+23:51:41,896 INFO File Detailed_Metrics_per_task.txt created successfully
+23:51:41,897 INFO Input file parsing completed succesfully
