@@ -7,6 +7,24 @@ For each category, collects metrics and stores them in python Dictionaries prese
 
 Build with Python 3.8.4 
 
+### **Execution Instructions**
+After cloning repo, project can be executed either by using default example input file or by providing a custom input file. 
+
+* Custom input file
+
+To run this programm with a custom file, add in Project root folder (Beeline folder) the input file you want to parse and after moving into this folder in your cmd,
+simply run bellow command:
+
+    `python main.py name_of_yourcustom_file.txt`
+   
+* Example input file:
+
+To run this programm with default file, add in Project root folder (Beeline folder) the input file you want to parse and after moving into this folder in your cmd,
+simply run bellow command:
+
+    `python main.py`
+
+
 
 ### **In more Detail**
 
