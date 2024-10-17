@@ -3,10 +3,11 @@ import os
 from pathlib import Path
 import logging
 
-FOLDER_NAME = "OutputFiles"
-FILE_NAME = "Detailed_Metrics_per_task.txt"
+FOLDER_NAME = "output_files"
+FILE_NAME = "detailed_metrics_per_task.txt"
 
-class Detailed_Metrics_per_task:
+
+class DetailedMetricsPerTask:
 
     def _get_file_location(self):
         script_path = os.path.abspath(__file__)
@@ -36,36 +37,33 @@ class Detailed_Metrics_per_task:
 
     # example of Keys -> org.apache.tez.common.counters.DAGCounter:, File System Counters:
     def _get_dictionary_key(self, line):
-        key = line.replace("INFO  : ", "").replace(":", "").replace("\n", "")
-        return key
+        return line.replace("INFO  : ", "").replace(":", "").replace("\n", "")
 
     # check if there are still metrics for task by verifying line has spacing [:   ]
     def _not_end_of_metrics(self, line):
-        if  ":   " in line:
-            return True
-        else:
-            return False
+        return ":   " in line
 
-    def create_Detailed_Metrics_per_task_text_file(self, line, input_file):
-
+    def create_detailed_metrics_per_task_text_file(self, line, input_file):
         file_path = self._get_file_location()
-        #creation of output file Detailed_Metrics_per_task.txt
-        with open(file_path, 'w') as Detailed_Metrics:
 
+        # creation of output file detailed_metrics_per_task.txt
+        with open(file_path, 'w') as detailed_metrics:
             key = self._get_dictionary_key(line)
             while 'Completed' not in key:
                 line = self._read_next_line(input_file)
-                Detailed_Metrics_dictionary = {}
+                detailed_metrics_dictionary = {}
                 nested_dictionary = {}
 
                 # as long as there are detailed metrics for each task (key) keep parsing lines
-                while self._not_end_of_metrics(line) is True:
+                while self._not_end_of_metrics(line):
                     vertex_name_and_metrics = self._get_vertex_name_and_metrics(line)
-                    nested_dictionary_key, nested_dictionary_value = self._get_nested_dictionary_values(vertex_name_and_metrics)
-                    nested_dictionary = self._initialize_nested_dictionary(nested_dictionary, nested_dictionary_key, nested_dictionary_value)
-                    Detailed_Metrics_dictionary[key] = nested_dictionary
+                    nested_dictionary_key, nested_dictionary_value = self._get_nested_dictionary_values(
+                        vertex_name_and_metrics)
+                    nested_dictionary = self._initialize_nested_dictionary(nested_dictionary, nested_dictionary_key,
+                                                                           nested_dictionary_value)
+                    detailed_metrics_dictionary[key] = nested_dictionary
                     line = self._read_next_line(input_file)
-                json.dump(Detailed_Metrics_dictionary, Detailed_Metrics, indent=2)
+                json.dump(detailed_metrics_dictionary, detailed_metrics, indent=2)
                 key = self._get_dictionary_key(line)
-        Detailed_Metrics.close()
-        logging.info("File Detailed_Metrics_per_task.txt created successfully")
+        detailed_metrics.close()
+        logging.info("File detailed_metrics_per_task.txt was created successfully")

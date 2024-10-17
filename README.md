@@ -29,15 +29,15 @@ To run the program with the default input file, simply get into the root folder 
 Each txt file contains only the metrics of one of the three main categories listed below:
 
 1) Query Execution Summary 
-Output file : 'Query_Execution_Summary.txt' -> Contains a python dictionary with keys the values under the Operations column and values the ones under the Duration column, in rows 80-91 of file "beeline_consent_query_stderr.txt". 
+Output file : 'query_execution_summary.txt' -> Contains a python dictionary with keys the values under the Operations column and values the ones under the Duration column, in rows 80-91 of file "beeline_consent_query_stderr.txt". 
 
 2) Task Execution Summary
-Output file : 'Task_Execution_Summary.txt' -> Contains a python dictionary which in the top level contains as keys the 4 vertices ("Map 1","Map 3","Map 4","Reducer 2") and as value a nested dictionary.
+Output file : 'task_execution_summary.txt' -> Contains a python dictionary which in the top level contains as keys the 4 vertices ("Map 1","Map 3","Map 4","Reducer 2") and as value a nested dictionary.
 The nested dictionary contains as keys the 5 metrics (DURATION(ms), CPU_TIME(ms), GC_TIME(ms), INPUT_RECORDS, OUTPUT_RECORDS) for each vertex and as values all the metrics under each column.
 Metrics in rows 92-101. 
 
 3) Detailed Metrics per task 
-Output file : ''Detailed_Metrics_per_task.txt' -> Contains a python dictionary which in the top level contains as keys the 4 vertices
+Output file : ''detailed_metrics_per_task.txt' -> Contains a python dictionary which in the top level contains as keys the 4 vertices
  Take advantage of the nesting and recreates a dictionary out of it that will contain all the metrics and the names respecting the 
 grouping. Metrics in row 103-302.
 

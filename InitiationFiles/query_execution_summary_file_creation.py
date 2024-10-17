@@ -3,18 +3,19 @@ import os
 from pathlib import Path
 import logging
 
-FOLDER_NAME = "OutputFiles"
-FILE_NAME = "Query_Execution_Summary.txt"
+FOLDER_NAME = "output_files"
+FILE_NAME = "query_execution_summary.txt"
 
-# Query_Execution_Summary category is defined within such lines. Bellow variable category_delimeter, is used to determine the start/end of the category.
-category_delimeter = 'INFO  : ----------------------------------------------------------------------------------------------'
+# Query Execution Summary category is defined within such lines. Bellow variable category_delimiter, is used to determine the start/end of the category.
+category_delimiter = 'INFO  : ----------------------------------------------------------------------------------------------'
 
-class Query_Execution_Summary:
+
+class QueryExecutionSummary:
 
     def __init__(self):
         self.seperator_indicator = 0
         # Creation of dictionary that will be passed in the output file
-        self.Query_Execution_Summary_dictionary = {}
+        self.query_execution_summary_dictionary = {}
 
     def _get_file_location(self):
         script_path = os.path.abspath(__file__)
@@ -27,12 +28,9 @@ class Query_Execution_Summary:
         line = input_file.readline()
         return line
 
-    # check if there are still metrics for Task_Execution_Summary by verifying lines are in between of separators [------] [------]
+    # check if there are still metrics for TaskExecutionSummary by verifying lines are in between of separators [------] [------]
     def _not_end_of_metrics(self):
-        if self.seperator_indicator < 2:
-            return True
-        else:
-            return False
+        return self.seperator_indicator < 2
 
     # OPERATION DURATION metrics example -> ['Compile Query', '7.43s']
     def _get_key_and_value_from_metrics(self, line):
@@ -42,26 +40,26 @@ class Query_Execution_Summary:
         value = metrics[-1]
         return key, value
 
-    def _write_dictionary_to_file(self, Query_Execution_Summary_file):
-        json.dump(self.Query_Execution_Summary_dictionary, Query_Execution_Summary_file, indent=2)
+    def _write_dictionary_to_file(self, query_execution_summary_file):
+        json.dump(self.query_execution_summary_dictionary, query_execution_summary_file, indent=2)
 
-    def create_Query_Execution_Summary_text_file(self, input_file):
+    def create_query_execution_summary_text_file(self, input_file):
 
         file_path = self._get_file_location()
-        #creation of output file Query_Execution_Summary.txt
+        # creation of output file query_execution_summary.txt
         with open(file_path, 'w') as QES_file:
             # move to next line since 'INFO  : OPERATION    DURATION' line won't be used for creation of dictionary
             line = self._read_next_line(input_file)
 
             # as long as there are metrics in specific category (Query Execution Summary) keep parsing lines
-            while self._not_end_of_metrics() is True:
+            while self._not_end_of_metrics():
                 # If line is either the start or end of category logs, store it in the seperator_indicator indicator
-                if category_delimeter in line:
+                if category_delimiter in line:
                     self.seperator_indicator += 1
                 else:
                     key, value = self._get_key_and_value_from_metrics(line)
-                    self.Query_Execution_Summary_dictionary[key] = value
+                    self.query_execution_summary_dictionary[key] = value
                 line = self._read_next_line(input_file)
             self._write_dictionary_to_file(QES_file)
         QES_file.close()
-        logging.info("File Query_Execution_Summary.txt created successfully")
+        logging.info("File query_execution_summary.txt was created successfully")

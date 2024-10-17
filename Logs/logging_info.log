@@ -1,6 +1,6 @@
-23:51:41,893 INFO Setup of logs file and loggings on console completed succesfully
-23:51:41,894 INFO Arguments verification and filepath retrieval completed succesfully
-23:51:41,894 INFO File Query_Execution_Summary.txt created successfully
-23:51:41,895 INFO File Task_Execution_Summary.txt created successfully
-23:51:41,896 INFO File Detailed_Metrics_per_task.txt created successfully
-23:51:41,897 INFO Input file parsing completed succesfully
+20:21:18,249 INFO Setup of logs file and logging on the console completed successfully
+20:21:18,249 INFO Arguments verification and filepath retrieval completed successfully
+20:21:18,250 INFO File query_execution_summary.txt was created successfully
+20:21:18,250 INFO File task_execution_summary.txt was created successfully
+20:21:18,252 INFO File detailed_metrics_per_task.txt was created successfully
+20:21:18,252 INFO Input file parsing completed successfully
